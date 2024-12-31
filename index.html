@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Exam</title>
+</head>
+
+<body>
+    <div class="container">
+        <div id="box"> 
+            <h2 id="quebox">(1) this is my question ?</h2>
+            <div class="row">
+                <input id="option1" class="options" type="radio" value="a" name="Option" style="cursor: pointer" />
+                <label for="option1" style="cursor: pointer">(a) Option 1</label>
+            </div>
+            <div class="row">
+                <input id="option2" class="options" style="cursor: pointer" type="radio" value="b" name="Option" />
+                <label for="option2" style="cursor: pointer">(b) Option 2</label>
+            </div>
+            <div class="row">
+                <input id="option3" class="options" style="cursor: pointer" type="radio" value="c" name="Option" />
+                <label for="option3" style="cursor: pointer">(c) Option 3</label>
+            </div>
+            <div class="row">
+                <input id="option4" class="options" style="cursor: pointer" type="radio" value="d" name="Option" />
+                <label for="option4" style="cursor: pointer">(d) Option 4</label>
+            </div>
+            <button class="btn" id="nextButton" onclick="nextQuestion()">Next</button>
+            <button class="btn" onclick="submitQuiz()">Submit</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+<script>
+
+const questions = [
+    {
+        que: "Which of the following is a markup language ?",
+        a: "HTML",
+        b: "CSS",
+        c: "JavaScript",
+        d: "PHP",
+        correct: "a",
+    },
+    {
+        que: "What year was JavaScript launched?",
+        a: "1996",
+        b: "1995",
+        c: "1994",
+        d: "none of the above",
+        correct: "b",
+    },
+    {
+        que: "What does CSS stand for?",
+        a: "Hypertext Markup Language",
+        b: "Cascading Style Sheet",
+        c: "JavaScript Object Notation",
+        d: "Helicopters Terminals Motorboats Lamborginis",
+        correct: "b",
+    },
+    {
+        que: "Which language is used for styling web pages?",
+        a: "HTML",
+        b: "CSS",
+        c: "JavaScript",
+        d: "PHP",
+        correct: "b",
+    },
+    {
+        que: "Which tag is used to define a hyperlink in HTML?",
+        a: "<a>",
+        b: "<link>",
+        c: "<href>",
+        d: "<hyperlink>",
+        correct: "a",
+    },
+    {
+        que: "Which company developed JavaScript?",
+        a: "Netscape",
+        b: "Microsoft",
+        c: "Sun Microsystems",
+        d: "Apple",
+        correct: "a",
+    },
+    {
+        que: "What is the full form of HTTP?",
+        a: "HyperText Transmission Protocol",
+        b: "HyperText Transfer Protocol",
+        c: "HyperType Text Protocol",
+        d: "HyperTool Transfer Protocol",
+        correct: "b",
+    },
+    {
+        que: "What does the 'DOM' in web development stand for?",
+        a: "Document Object Model",
+        b: "Data Object Model",
+        c: "Document Oriented Model",
+        d: "Data Oriented Model",
+        correct: "a",
+    },
+    {
+        que: "Which programming language is known as the 'language of the web'?",
+        a: "Python",
+        b: "Ruby",
+        c: "JavaScript",
+        d: "Java",
+        correct: "c",
+    },
+    {
+        que: "Which tag is used to define an unordered list in HTML?",
+        a: "<ul>",
+        b: "<ol>",
+        c: "<li>",
+        d: "<list>",
+        correct: "a",
+    },
+];
+
+let index = 0;
+let total = questions.length;
+let right = 0,
+    wrong = 0;
+
+const quebox = document.getElementById("quebox");
+const optionInput = document.querySelectorAll(".options");
+const nextButton = document.getElementById("nextButton");
+
+const loadQuestion = () => {
+    if (index === total) {
+        return endQuiz();
+    }
+    reset();
+    let data = questions[index];
+    quebox.innerHTML = `${index + 1}) ${data.que}`;
+    optionInput[0].nextElementSibling.innerText = data.a;
+    optionInput[1].nextElementSibling.innerText = data.b;
+    optionInput[2].nextElementSibling.innerText = data.c;
+    optionInput[3].nextElementSibling.innerText = data.d;
+};
+
+const submitQuiz = () => {
+    const data = questions[index];
+    const ans = getAnswer();
+    if (ans === data.correct) {
+        right++;
+    } else {
+        wrong++;
+    }
+};
+
+const nextQuestion = () => {
+    index++;
+    loadQuestion();
+};
+
+const getAnswer = () => {
+    let answer;
+    optionInput.forEach((input) => {
+        if (input.checked) {
+            answer = input.value;
+        }
+    });
+    return answer;
+};
+
+const reset = () => {
+    optionInput.forEach((input) => {
+        input.checked = false;
+    });
+};
+
+const endQuiz = () => {
+    document.getElementById("box").innerHTML = `
+        <h3>Congratulations!</h3>
+        <h2>${right}/${total} Are Correct</h2>
+    `;
+};
+
+loadQuestion();
+
+
+</script>

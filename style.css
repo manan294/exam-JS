@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #4a2668;
+    padding: 70px;
+    border-radius: 10px;
+    box-shadow: 0 30px 17px rgba(0, 0, 0, 0.699);
+    width: 500px;
+}
+
+h2, h3 {
+    text-align: center;
+}
+
+#quebox {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: aliceblue;
+}
+
+.row {
+    margin: 10px 0;
+}
+
+.options {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+label {
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+}
+
+.btn {
+    display: block;
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px auto 0;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ffbb00;
+}
+
+.btn:active {
+    background-color: #ffffff;
+}
+
+.container h3 {
+    font-size: 24px;
+    color: #4CAF50;
+}
+
+.container h2 {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+#option1{
+    color: white;
+}
+
+#timer{
+    color: rgb(161, 161, 161);
+}
+
+#timer{
+    text-align: center;
+}
+
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        width: 80%;
+        padding: 15px;
+    }
+}
